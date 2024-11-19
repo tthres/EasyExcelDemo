@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页</title>
+    <script src="js/vue.js"></script>
+    <script src="element-ui/lib/index.js"></script>
+    <script src="js/axios-0.18.0.js"></script>
+    <link rel="stylesheet" href="element-ui/lib/theme-chalk/index.css">
+    <style type="text/css" rel="stylesheet">
+        .display-upload-wrapper {
+            border: 1px solid red;
+            width: 384px;
+            height: 54px;
+            cursor: pointer;
+            width: 244px;
+            border-radius: 4px;
+            background: #F4F8FF;
+        }
+
+        .innier-upload-wrapper {
+            height: 100%;
+            background: linear-gradient(270deg, #C0D8FF 0%, #E7F2FF 100%);
+            background-repeat: no-repeat;
+            background-size: 10% 100%;
+            transition: background-size .3s linear;
+        }
+
+        #upload-file {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" style="text-align: center;margin-top: 100px">
+    <h1>excel文件导入导出练习</h1>
+    <br>
+    <div style="text-align: center">
+        <el-upload
+                class="upload-demo"
+                ref="upload"
+                action="http://localhost/upload"
+                :http-request="submitUpload"
+                v-loading.fullscreen.lock="fullscreenLoading"
+                :element-loading-text="msg"
+                element-loading-spinner="el-icon-loading"
+                element-loading-background="rgba(0, 0, 0, 0.8)"
+        >
+            <el-button slot="trigger" type="success">选取excel文件并自动导入数据到数据库中</el-button>
+        </el-upload>
+    </div>
+    <div>
+        <hr>
+        <el-button type="primary" @click="download">从数据库导出数据到Excel文件中</el-button>
+    </div>
+
+</div>
+<script>
+    var v = new Vue({
+        el: "#app",
+        methods: {
+            download() {
+                location.href="http://localhost/download";
+            },
+            submitUpload(data) {
+                // 开始上传
+                let _this = this;
+                _this.fullscreenLoading=true;
+                let time=0;
+                let t = setInterval(function () {
+                    _this.msg='正在上传,请耐心等待,已用时: '+time++ +" 秒!";
+                }, 1000);
+                var formData = new FormData();
+                formData.append("file", data.file);
+                axios({
+                    method: 'post',
+                    url: 'http://localhost/upload', //上传接口
+                    data: formData,
+                    headers: {'Content-Type': 'multipart/form-data'}
+                }).then((res) => {
+                    _this.fullscreenLoading=false;
+                    //alert(res);
+                    //alert(res.data);
+                    //请求成功结果回调，此处进行页面渲染，提示等操作
+                    _this.$alert(res.data, '上传结果提示', {
+                        confirmButtonText: '我晓得了'
+                    });
+                    clearInterval(t);
+                })
+            }
+        },
+        data: {
+            msg:'',
+            fullscreenLoading:false,
+            options: [{
+                value: '100',
+                label: '每张存1百条'
+            }, {
+                value: '1000',
+                label: '每张存1千条'
+            }, {
+                value: '10000',
+                label: '每张存1万条'
+            }, {
+                value: '100000',
+                label: '每张存10万条'
+            }],
+            value: '10000'
+        }
+    });
+</script>
+</body>
+</html>

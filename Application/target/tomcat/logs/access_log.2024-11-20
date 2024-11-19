@@ -1,0 +1,8 @@
+0:0:0:0:0:0:0:1 - - [20/Nov/2024:00:56:43 +0800] "GET / HTTP/1.1" 200 3856 http-bio-80-exec-1 435
+0:0:0:0:0:0:0:1 - - [20/Nov/2024:00:56:43 +0800] "GET /js/axios-0.18.0.js HTTP/1.1" 200 12948 http-bio-80-exec-4 5
+0:0:0:0:0:0:0:1 - - [20/Nov/2024:00:56:43 +0800] "GET /js/vue.js HTTP/1.1" 200 341462 http-bio-80-exec-3 8
+0:0:0:0:0:0:0:1 - - [20/Nov/2024:00:56:43 +0800] "GET /element-ui/lib/index.js HTTP/1.1" 200 567058 http-bio-80-exec-2 12
+0:0:0:0:0:0:0:1 - - [20/Nov/2024:00:56:43 +0800] "GET /element-ui/lib/theme-chalk/index.css HTTP/1.1" 200 232460 http-bio-80-exec-5 10
+0:0:0:0:0:0:0:1 - - [20/Nov/2024:00:56:43 +0800] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-80-exec-9 1
+0:0:0:0:0:0:0:1 - - [20/Nov/2024:00:57:05 +0800] "GET /element-ui/lib/theme-chalk/fonts/element-icons.woff HTTP/1.1" 200 28200 http-bio-80-exec-8 12
+0:0:0:0:0:0:0:1 - - [20/Nov/2024:00:57:38 +0800] "POST /upload HTTP/1.1" 200 35 http-bio-80-exec-10 32561
