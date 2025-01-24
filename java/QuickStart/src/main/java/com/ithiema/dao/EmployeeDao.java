@@ -5,7 +5,8 @@ import com.ithiema.pojo.employee;
 import java.util.List;
 
 public class EmployeeDao {
+    int i = 0;
     public void save(List<employee> list) {
-        System.out.println(list.size()+"模拟操作数据库");
+        i++;
     }
 }

@@ -13,9 +13,12 @@ import org.junit.Test;
 public class ManyRead {
     @Test
     public void read() {
-        String fileName = TestFileUtil.getPath() + "simpleWrite1732025240352.xlsx";
+        String fileName = TestFileUtil.getPath() + "simpleWrite1732122731848.xlsx";
         ExcelReader reader = EasyExcel.read(fileName, employee.class, new EmployeeListener(new EmployeeDao())).build();
         ReadSheet sheet = EasyExcel.readSheet().build();
+        long t1 = System.currentTimeMillis();
         reader.read(sheet);
+        long t2 = System.currentTimeMillis();
+        System.out.println(t2 - t1);
     }
 }

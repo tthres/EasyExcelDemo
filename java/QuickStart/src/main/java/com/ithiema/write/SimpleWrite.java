@@ -14,7 +14,7 @@ public class SimpleWrite {
     private List<employee> data(int count) {
         List<employee> list = ListUtils.newArrayList();
         for (int i = 1; i <= count; i++) {
-            list.add(new employee(i, "测试数据"+i, new Date(), 6.6*i));
+            list.add(new employee(i, "测试数据"+i, new Date(), 6.6*i, "货主"+i, i*1.1, "货主"+i, "货主"+i, "货主"+i, "货主"+i, "货主"+i, "货主"+i, "货主"+i, "货主"+i, "货主"+i, "货主"+i));
         }
         return list;
     }
